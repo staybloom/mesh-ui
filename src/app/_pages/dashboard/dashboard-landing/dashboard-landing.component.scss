@@ -1,0 +1,105 @@
+.anomalies {
+    width: 100%;
+    // height: 100%;
+    float: left;
+
+    &__unresolved {
+        padding: 48px;
+        float: left;
+        padding: 48px;
+        width: 69%;
+
+        &__title {
+            font-family: "Poppins", sans-serif;
+        }
+
+        &__cards {
+            margin-top: 32px;
+            overflow: auto;
+            height: calc(100vh - 280px);
+            min-height: 100%;
+
+            app-anomaly-card {
+                display: inline-block;
+                margin-bottom: 36px;
+                width: 100%;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    &__resolved {
+        padding: 48px 48px 24px 24px;
+        float: left;
+        width: 31%;
+        height: calc(100vh - 95px);
+        background: #eeee;
+        height: 100;
+        border-radius: 0px 8px 8px 0px;
+        position: relative;
+
+        &__title {
+            font-family: "Poppins", sans-serif;
+        }
+
+        &__content {
+            margin-bottom: 32px;
+            margin-top: 32px;
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 24px 32px;
+
+            &__hotel {
+                display: flex;
+                justify-content: space-between;
+
+                &__col-one {
+                    &__bloom {
+                        &__hotelBrand {
+                            height: 42px;
+                            margin-bottom: 14px;
+
+                        }
+                    }
+                }
+
+                &__col-two {
+                    text-align: right;
+
+                    &__roomCount {
+                        margin-bottom: 14px;
+
+                    }
+                }
+            }
+
+            &__divider {
+                margin: 20px 0;
+                border-bottom: 1px dashed #CCA333;
+            }
+
+            &__room {
+                display: flex;
+                justify-content: space-between;
+
+                &__col-one {
+                    &__device {
+                        &__deviceId {
+                            margin-bottom: 14px;
+                        }
+                    }
+                }
+
+                &__col-two {
+                    &__roomMin {
+                        margin-bottom: 14px;
+                    }
+                }
+
+            }
+        }
+    }
+}

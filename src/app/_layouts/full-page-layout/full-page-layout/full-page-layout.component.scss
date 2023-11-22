@@ -1,0 +1,77 @@
+.mesh {
+    background-color: #6B6B6B;
+    height: 100%;
+
+    &__wrapper {
+        padding: 8px;
+
+        &__header {
+            padding: 0 48px;
+
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__meshLogo {
+                display: flex;
+                align-items: center;
+
+                &__title {
+                    color: #fff;
+                    width: 117px;
+                    font-size: 16px;
+                    line-height: normal;
+                }
+            }
+
+            &__navlist {
+                text-align: center;
+                max-width: 605px;
+                width: 100%;
+                height: 24px;
+                display: flex;
+                justify-content: space-between;
+
+                &__item {
+                    margin-right: 14%;
+                    display: inline-block;
+
+                    a {
+                        display: inline-flex;
+                        gap: 8px;
+                        font-family: 'Poppins', sans-serif;
+                        align-items: center;
+                        text-decoration: none;
+                        color: #fff;
+                        line-height: 0;
+                        color: #cca333;
+
+                        img {
+                            height: 24px;
+                        }
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+
+
+        &__body {
+            overflow: auto;
+
+            border-radius: 8px;
+            background-color: #fafafa;
+            height: calc(100vh - 95px);
+        }
+
+        &__bloomTechLogo {
+            // Styles for .mesh__wrapper__header__bloomTechLogo
+        }
+    }
+
+}

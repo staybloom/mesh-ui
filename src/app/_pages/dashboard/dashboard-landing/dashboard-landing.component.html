@@ -1,0 +1,134 @@
+<div class="anomalies">
+  <div class="anomalies__unresolved">
+    <p class="h1-bold font-black-10 anomalies__unresolved__title">
+      Current Anomalies
+    </p>
+    <div class="anomalies__unresolved__cards" *ngIf="list?.length">
+      <ng-container *ngFor="let item of anomaliesDataResponse; let i = index">
+        <app-anomaly-card [anomalyData]="item"> </app-anomaly-card>
+      </ng-container>
+    </div>
+  </div>
+  <div class="anomalies__resolved">
+    <p class="h1-bold font-black-10 anomalies__resolved__title">Disconnected</p>
+    <div class="anomalies__resolved__content">
+      <div class="anomalies__resolved__content__hotel">
+        <div class="anomalies__resolved__content__hotel__col-one">
+          <div class="anomalies__resolved__content__hotel__col-one__bloom">
+            <div
+              class="anomalies__resolved__content__hotel__col-one__bloom__hotelBrand h3-bold font-gold"
+            >
+              Bloomrooms
+            </div>
+            <div
+              class="anomalies__resolved__content__hotel__col-one__bloom__cityName h3-regular font-black-10"
+            >
+              Connaught Place Area
+            </div>
+          </div>
+        </div>
+        <div class="anomalies__resolved__content__hotel__col-two">
+          <div
+            class="anomalies__resolved__content__hotel__col-two__roomCount h1-bold font-danger"
+          >
+            3
+          </div>
+          <div
+            class="anomalies__resolved__content__hotel__col-two__roomTitle h3-light font-black-30"
+          >
+            Rooms
+          </div>
+        </div>
+      </div>
+      <div class="anomalies__resolved__content__divider"></div>
+      <div class="anomalies__resolved__content__room">
+        <div class="anomalies__resolved__content__room__col-one">
+          <div class="anomalies__resolved__content__room__col-one__device">
+            <div
+              class="anomalies__resolved__content__room__col-one__device__deviceId h3-light font-gold"
+            >
+              Device_ID_3343111
+            </div>
+            <div
+              class="anomalies__resolved__content__room__col-one__device__rooms h3-regular font-black-10"
+            >
+              SK 003, SK 004, SK 005
+            </div>
+          </div>
+        </div>
+        <div class="anomalies__resolved__content__room__col-two">
+          <div
+            class="anomalies__resolved__content__room__col-two__roomMin h3-bold font-gold"
+          >
+            23 min
+          </div>
+          <div
+            class="anomalies__resolved__content__room__col-two__hhmm h3-regular font-black-10"
+          >
+            12:23
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anomalies__resolved__content">
+      <div class="anomalies__resolved__content__hotel">
+        <div class="anomalies__resolved__content__hotel__col-one">
+          <div class="anomalies__resolved__content__hotel__col-one__bloom">
+            <div
+              class="anomalies__resolved__content__hotel__col-one__bloom__hotelBrand h3-bold font-gold"
+            >
+              Bloomrooms
+            </div>
+            <div
+              class="anomalies__resolved__content__hotel__col-one__bloom__cityName h3-regular font-black-10"
+            >
+              Connaught Place Area
+            </div>
+          </div>
+        </div>
+        <div class="anomalies__resolved__content__hotel__col-two">
+          <div
+            class="anomalies__resolved__content__hotel__col-two__roomCount h1-bold font-danger"
+          >
+            3
+          </div>
+          <div
+            class="anomalies__resolved__content__hotel__col-two__roomTitle h3-light font-black-30"
+          >
+            Rooms
+          </div>
+        </div>
+      </div>
+      <div class="anomalies__resolved__content__divider"></div>
+      <div class="anomalies__resolved__content__room">
+        <div class="anomalies__resolved__content__room__col-one">
+          <div class="anomalies__resolved__content__room__col-one__device">
+            <div
+              class="anomalies__resolved__content__room__col-one__device__deviceId h3-light font-gold"
+            >
+              Device_ID_3343111
+            </div>
+            <div
+              class="anomalies__resolved__content__room__col-one__device__rooms h3-regular font-black-10"
+            >
+              SK 003, SK 004, SK 005
+            </div>
+          </div>
+        </div>
+        <div class="anomalies__resolved__content__room__col-two">
+          <div
+            class="anomalies__resolved__content__room__col-two__roomMin h3-bold font-gold"
+          >
+            23 min
+          </div>
+          <div
+            class="anomalies__resolved__content__room__col-two__hhmm h3-regular font-black-10"
+          >
+            12:23
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

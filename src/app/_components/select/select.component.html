@@ -1,0 +1,13 @@
+<mat-form-field class="custom_text_input_field select" appearance="outline">
+  <mat-label>Select reason</mat-label>
+  <mat-select
+    [(ngModel)]="data"
+    [disabled]="disabled"
+    (selectionChange)="changeSelect($event)"
+    panelClass="custom_select_box"
+  >
+    <mat-option value="anomaly fixed somehow">anomaly fixed somehow</mat-option>
+    <mat-option value="someone checked-in">someone checked-in</mat-option>
+    <mat-option value="other">other</mat-option>
+  </mat-select>
+</mat-form-field>

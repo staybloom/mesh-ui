@@ -1,0 +1,46 @@
+// @import "./abstract/variables";
+
+.font-primary {
+    -webkit-text-fill-color: $color-primary;
+    color: $color-primary;
+}
+
+.font-success {
+    -webkit-text-fill-color: $color-green;
+    color: $color-green;
+}
+
+.font-danger {
+    -webkit-text-fill-color: $color-danger;
+    color: $color-danger;
+}
+
+.font-white {
+    -webkit-text-fill-color: $color-white;
+    color: $color-white;
+}
+
+.font-black {
+    -webkit-text-fill-color: $color-black;
+    color: $color-black;
+}
+
+.font-black-10 {
+    -webkit-text-fill-color: $color-black-10;
+    color: $color-black-10;
+}
+
+.font-black-20 {
+    -webkit-text-fill-color: $color-black-20;
+    color: $color-black-20;
+}
+
+.font-black-30 {
+    -webkit-text-fill-color: $color-black-30;
+    color: $color-black-30;
+}
+
+.font-gold {
+    -webkit-text-fill-color: $color-gold;
+    color: $color-gold;
+}

@@ -1,0 +1,116 @@
+<div class="anomalie__wrapper">
+  <div class="anomalie__wrapper__dates">
+    <app-pulse></app-pulse>
+    <div class="font-black-10">
+      <span class="h2-bold">{{ potentialAnomalyDetectionTime.date }}</span
+      ><br /><span class="h2-regular">{{
+        potentialAnomalyDetectionTime.month
+      }}</span>
+    </div>
+  </div>
+  <div *ngIf="hotelDetails" class="anomalie__wrapper__hotel">
+    <div
+      class="anomalie__wrapper__hotel__image"
+      [ngClass]="{ shrinked: isClassActive }"
+    >
+      <img
+        src=""
+        alt=""
+        [src]="
+          hotelDetails.picture
+            ? hotelDetails.picture
+            : './assets/images/property_image_holder.png'
+        "
+      />
+    </div>
+    <div class="anomalie__wrapper__hotel__detail">
+      <div
+        class="h3-bold font-gold anomalie__wrapper__hotel__detail__hotelRoom"
+      >
+        {{ hotelDetails.roomCode }}
+        • {{ hotelDetails.brand }}
+      </div>
+      <div
+        class="font-black-10 h1-light anomalie__wrapper__hotel__detail__hotelArea"
+      >
+        {{ hotelDetails.name }}
+      </div>
+      <div
+        class="h3-regular font-black-20 anomalie__wrapper__hotel__detail__city"
+      >
+        {{ hotelDetails.city }}
+      </div>
+      <div class="anomalie__wrapper__hotel__detail__reasonSpace">
+        <div
+          class="anomalie__wrapper__hotel__detail__reasonSpace__content h3-light"
+        >
+          <!-- <span class="reason font-gold">Reason: </span> -->
+          <app-select
+            (reason)="getReason($event)"
+            [disabled]="!edit"
+            [data]="anomalyData.reason"
+            class="anomalie__wrapper__hotel__detail__reasonSpace__content__selectBox select__box"
+          ></app-select>
+          <!-- <span class="font-black-10" style="max-width: 218px; width: 100%">
+            &nbsp;{{ anomalyData?.reason }}</span
+          > -->
+          <div
+            *ngIf="edit"
+            (click)="saveReason()"
+            class="btn-primary anomalie__wrapper__hotel__detail__reasonSpace__content__saveButton"
+          >
+            Save
+          </div>
+          <span
+            class="anomalie__wrapper__hotel__detail__reasonSpace__content__editIcon"
+            *ngIf="!edit"
+            (click)="editReason()"
+            ><img src="./assets/dark/edit.svg" alt=""
+          /></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="anomalie__wrapper__anomalies"
+    [ngClass]="{ shrinked__cards: !isClassActive }"
+  >
+    <ng-container *ngFor="let item of this.allAnomalies; let i = index">
+      <div class="anomalie__wrapper__anomalies__item" [style.z-index]="20 - i">
+        <app-pulse
+          [style.z-index]="20 - i"
+          *ngIf="item.isActive"
+          class="anomalie__wrapper__anomalies__item__pulse"
+        ></app-pulse>
+
+        <span class="anomalie__wrapper__anomalies__item__hhmm font-gold">{{
+          getAnomaliesTime(item).time24
+        }}</span>
+        <span class="anomalie__wrapper__anomalies__item__minutes">{{
+          item.counter
+        }}</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="anomalie__wrapper__time">
+    <div class="anomalie__wrapper__time__min h3-light font-danger">
+      {{ this.activeCounter }}
+    </div>
+    <div class="anomalie__wrapper__time__hhmm h1-light font-black-30">
+      {{ potentialAnomalyDetectionTime.time24 }}
+    </div>
+    <div class="anomalie__wrapper__time__roomStatus">
+      <img src="./assets/color/Occupied-Icon.svg" alt="" />
+    </div>
+  </div>
+  <div class="anomalie__wrapper__action">
+    <a class="anomalie__wrapper__action__click" (click)="clickAnomaly()">
+      <img
+        [style.transform]="!isClassActive ? 'rotate(0deg)' : 'rotate(180deg)'"
+        src="./assets/dark/right-arrow.svg"
+        alt=""
+      />
+    </a>
+  </div>
+</div>

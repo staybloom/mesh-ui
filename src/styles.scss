@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "./styles/base/font-color";
+@import "./styles/base/font-size";
+@import "./styles/abstract/variables";
+@import "./styles/base/font-color";
+@import "./styles/base/base";
+@import "./styles/base/button";
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: normal;
+    // scrollbar-gutter: stable both-edges;
+}
+
+html {
+    // scrollbar-gutter: stable both-edges;
+    // width: 100vw;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    // font-family: Verdana, Geneva, Tahoma, sans-serif
+
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

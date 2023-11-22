@@ -1,0 +1,50 @@
+<div class="mesh">
+  <div class="mesh__wrapper">
+    <div class="mesh__wrapper__header">
+      <div class="mesh__wrapper__header__meshLogo">
+        <div class="mesh__wrapper__header__meshLogo__image">
+          <img src="./assets/color/mesh-logo.svg" alt="" />
+        </div>
+
+        <div class="mesh__wrapper__header__meshLogo__title">
+          Monitory & Energy Saving Hub
+        </div>
+      </div>
+      <div class="mesh__wrapper__header__navlist">
+        <div class="mesh__wrapper__header__navlist__item">
+          <a href="javascript:void(0)">
+            <span><img src="./assets/dark/dash.svg" alt="" /></span>
+            Dashboard
+          </a>
+        </div>
+        <!-- <div class="mesh__wrapper__header__navlist__item">
+          <a href="javascript:void(0)">
+            <span><img src="./assets/dark/dash.svg" alt="" /></span>
+          </a>
+        </div> -->
+        <div class="disabled mesh__wrapper__header__navlist__item">
+          <a href="javascript:void(0)">
+            <span><img src="./assets/dark/box.svg" alt="" /></span>
+          </a>
+        </div>
+        <div class="disabled mesh__wrapper__header__navlist__item">
+          <a href="javascript:void(0)">
+            <span><img src="./assets/dark/settings.svg" alt="" /></span>
+          </a>
+        </div>
+        <div
+          style="display: none"
+          class="disabled mesh__wrapper__header__navlist__item"
+        >
+          <app-switch></app-switch>
+        </div>
+      </div>
+      <div class="mesh__wrapper__header__bloomTechLogo">
+        <img src="./assets/color/bloomTech-logo.svg" alt="" />
+      </div>
+    </div>
+    <div class="mesh__wrapper__body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

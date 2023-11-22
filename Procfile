@@ -1,0 +1,1 @@
+start: node dist/mesh/server/main.js
