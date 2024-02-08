@@ -8,5 +8,6 @@ export const AppConfig = Object.freeze({
     MESH_ACTIVE_ANOMALY: 'mesh/active/anomaly',
     MESH_PLACE_ANOMALY: 'mesh/place/anomaly',
     PMS_INVENTORY: 'pms/inventory/',
+    MESH_FETCH_DISCONNECTED_DEVICED: 'mesh/fetchDisconnectedDevices',
   },
 });

@@ -52,8 +52,8 @@
 }
 
 .mat-mdc-form-field-infix {
-    min-height: 42px;
-    max-height: 42px;
+    min-height: 36px;
+    max-height: 36px;
     padding: 0;
 }
 
@@ -199,7 +199,7 @@
     .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
     .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
     .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
-        border-color: #9b9b9b;
+        border-color: #aaaaaa;
     }
 
     &:hover {
@@ -207,7 +207,7 @@
         .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
         .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
         .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
-            border-color: #9b9b9b;
+            border-color: #aaaaaa;
         }
     }
 }

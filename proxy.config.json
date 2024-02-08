@@ -16,14 +16,5 @@
     "pathRewrite": {
       "^/socket": ""
     }
-  },
-  "/bridge/*": {
-    "target": "wss://1tn4ylyxc4.execute-api.ap-southeast-1.amazonaws.com/DEV/",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    "pathRewrite": {
-      "^/socket": ""
-    }
   }
 }

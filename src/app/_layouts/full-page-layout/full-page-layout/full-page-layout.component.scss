@@ -6,7 +6,7 @@
         padding: 8px;
 
         &__header {
-            padding: 0 48px;
+            padding: 25px 48px 33px 48px;
 
 
             display: flex;
@@ -15,19 +15,21 @@
 
             &__meshLogo {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
 
                 &__title {
                     color: #fff;
                     width: 117px;
                     font-size: 16px;
-                    line-height: normal;
+                    line-height: 16px;
+                    margin-left: 15px;
+                    font-family: 'POPPINS', sans-serif;
                 }
             }
 
             &__navlist {
                 text-align: center;
-                max-width: 605px;
+                max-width: 350px;
                 width: 100%;
                 height: 24px;
                 display: flex;
@@ -66,12 +68,39 @@
 
             border-radius: 8px;
             background-color: #fafafa;
-            height: calc(100vh - 95px);
+            height: calc(100vh - 128px);
         }
 
         &__bloomTechLogo {
-            // Styles for .mesh__wrapper__header__bloomTechLogo
+            object {
+                width: 150px;
+                height: 48px;
+            }
         }
     }
 
+}
+
+.active {
+    font-size: 25px;
+    color: #fff;
+}
+
+.no-internet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FF6060;
+    text-align: center;
+    padding: 2px;
+    color: #fff;
+    display: none;
+
+    a {
+        vertical-align: auto;
+        position: relative;
+        top: 3px;
+        left: 10px;
+    }
 }

@@ -1,6 +1,9 @@
-<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M55.8 14.4H39.6V24.3V32.4H55.8M52.2 23.4H46.8" stroke="#FFCC09" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M39.6 39.6L39.6 57.6M55.8 39.6V48.6M55.8 57.6V48.6M46.8 48.6H55.8" stroke="#FFCC09" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M30.6 32.4V14.4L22.5 25.2L14.4 14.4L14.7099 14.8132M14.4 32.4V25.2" stroke="#FFCC09" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M30.6 39.6H18.9C16.4147 39.6 14.4 41.6147 14.4 44.1C14.4 46.5853 16.4147 48.6 18.9 48.6H23.4M14.4 57.6H26.1C28.5853 57.6 30.6 55.5853 30.6 53.1C30.6 50.6147 28.5853 48.6 26.1 48.6H21.6" stroke="#FFCC09" stroke-width="3.6" stroke-linecap="round"/>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 48" width="46" height="48">
+	<title>New Project</title>
+	<defs>
+		<image  width="46" height="48" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAMAAABZu7juAAAAAXNSR0IB2cksfwAAAZVQTFRFAAAA/8wA/8oH/8gA/8wH/8wG/8oA/8sH/8sI/8sI/8oI/8sI/8sI/8wJ/8wJ/8gA/8sJ/wAA/8sJ/8sH/8sH/8sI/78A/8sI/8sJ/8oG/8wI/8wA/8sI/8sI/8wI/8kF/8wI/8oF/8sH/8wH/8sI/8oI/78A/8sH/8wJ/8YA/8oI/8sJ/8wJ/8wI/8wI/8oH/8sG/8oJ/8oI/8sI/8sJ/8QA/8sI/4AA/8wI/8wI/8sJ/8kH/8wH/8wI/8kI/8wA/8wI/8wJ/8wI/8sH/8gF/8sJ/8wI/8wJ/8wJ/8wJ/8wJ/8wA/8cG/8sG/8gG/8oJ/7kA/8sJ/8wI/8wH/8kH/8oF/8oI/8sI/8oJ/8wI/8sJ/8sI/8wJ/8sJ/8gA/8wI/8wJ/8sH/8kI/8wI/8sH/8sI/8oG/8sH/8oI/8wJ/8sI/6oA/8wF/8oI/8sI/8sI/8wJ/8sJ/8wI/8sI/8sG/8wI/8oH/6oA/8oJ/8YA/8sJ/8sI/8gH/8kG/78A/8wJ/8sH/8sJ/8sF/8MA/8wJ/8sI/8cIoOHcRQAAAId0Uk5TABlqF24oGHGAfz4i8f/mHOgB7EprwQTEWSuCFPKIZDT0NUmMQD8Iie8bZsrrQf5IT3RlhTsNYwK+uLAmafAhBf2QfWczsvmzWuTIDyksLjoLsfVGTDBgmB3z7b+VdQ7DVU5CHoqhUnBD7pkGN4O1wLSS4LxUuU0DVhLn+yVREOpFyTYRd14glJCXvwAAAk5JREFUeJzNlOdXE0EQwCecwUhckktI1BMShVMTSgQ1XAAFThFEaYK9YAclFmzYlaZ/t7N7e3FLOO+L7zkfZmdnfm8z5SYAkQYDRInsinpG4+6YLHuaAOJ7SXOjQCeShLC7mSKapKEFdSZbo7P78L6fWgd0mlhwsBWPthreRr05auV1+tBhgHZqtHM6TSS8wxblyFHqP4b+QpHRxQLDO328E3TJdmGgK+tbf8Mh0c3T7+A55gJx6Clh6Dj0oi71oToRjMNJmv4p2iMrryZT7mcz6i//wZ0MT6Pi5NXXB3ho0EOHTuMQDW+EKQO0189wPMno4RJJjvD0R3tAx12OuwyPsSoBLDzPckouNc5mFPdyOYfeMZr++XHX5FRAI33cFy2Z/waf0LYpEFclreFRvF/wDVUsMCZJRsruImm+xA1V6DY5U0o10w43xmy7zjb9c3FmhN+c9ZOZcmRqeI4dkcvzUkW81AyZLIu0y0qFhYLagSs0ehWNayKOf2/XAW7cVOlb7HXtIyAUN2/TTbkjzPruIuyMT6O+N1en/Pr4ffYphMYfoH4YHn+E+nF4HCp4PFmy7dxyzrZnTB2P8/F5eHRUbOL8oKHgrhCt4L1P7nrqqYwnhdgzGljolvjWhISvKK8DVJ+3xF68fLVqxV6/QedbCTff8fF5ucsy8h69QwGdUWQNvb3hcTq2tfD4KnqLAfiHWWGTPk6gcwB2xj99Vj/3L18D8G8qTZYhAP+urN6PdT+8QVLSHqyQ8U2ArW1hkxo2q7Vw9eeW1ARz6Rf8BtndeQ+LrUkYAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer 2" href="#img1" x="0" y="0"/>
 </svg>

@@ -9,11 +9,11 @@ export class AnomaliesService {
   public anomaliesDataResponse: AnomalyDataResponse[] = [];
   constructor(private http: HttpClient) {}
 
-  getAnomalies(data: any = {}) {
+  getAnomalies(payload: any) {
     return this.http
       .post(
         AppConfig.API_URL + AppConfig.FRONT_END_API.MESH_ACTIVE_ANOMALY,
-        data
+        payload
       )
       .pipe(map((data: any) => data.data));
   }
@@ -38,5 +38,14 @@ export class AnomaliesService {
       .get(AppConfig.API_URL + AppConfig.FRONT_END_API.PMS_INVENTORY + id)
       .pipe(map((data: any) => data.data))
       .toPromise();
+  }
+  getDisconnectedDevices(payload: any) {
+    return this.http
+      .post(
+        AppConfig.API_URL +
+          AppConfig.FRONT_END_API.MESH_FETCH_DISCONNECTED_DEVICED,
+        payload
+      )
+      .pipe(map((data: any) => data.data));
   }
 }

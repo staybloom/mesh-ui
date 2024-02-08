@@ -27,8 +27,8 @@
             opacity: 1;
             transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 145px;
+            height: 145px;
             border-radius: 12px;
             overflow: hidden;
 
@@ -60,11 +60,18 @@
                 &__content {
                     &__editIcon {
                         cursor: pointer;
+                        border: none;
+                        background-color: transparent;
+                    }
+
+                    &__saveButton {
+                        background-color: transparent;
                     }
                 }
 
                 span {
                     display: inline-block;
+                    min-width: 49px;
 
                     img {
                         display: inline-block;
@@ -79,8 +86,24 @@
         margin-left: 80px;
         text-align: right;
 
+        &__timer {
+            float: left;
+            position: relative;
+            top: 15px;
+        }
+
         &__roomStatus {
+            float: left;
             text-align: right;
+
+            // img {
+            //     width: 50px;
+
+            // }
+        }
+
+        &__min {
+            color: #aaa;
         }
     }
 
@@ -98,6 +121,7 @@
             margin-bottom: -24px;
             margin-top: -24px;
             height: 188px;
+            border: none;
 
             img {
                 transition: all .5s ease;
@@ -111,6 +135,7 @@
         display: flex;
         align-items: center;
         opacity: 1;
+        position: relative;
 
         &__item {
             transition: all .6s ease-out;
@@ -173,4 +198,15 @@
 .select__box {
     max-width: 218px;
     width: 100%;
+}
+
+.extra-anomalies {
+    position: absolute;
+    right: -59px;
+    z-index: 999999;
+    top: 0;
+    font-size: 20px;
+    font-style: normal;
+    color: #444;
+    font-weight: 500;
 }

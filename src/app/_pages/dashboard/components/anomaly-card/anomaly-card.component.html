@@ -54,19 +54,20 @@
           <!-- <span class="font-black-10" style="max-width: 218px; width: 100%">
             &nbsp;{{ anomalyData?.reason }}</span
           > -->
-          <div
+          <button
             *ngIf="edit"
             (click)="saveReason()"
             class="btn-primary anomalie__wrapper__hotel__detail__reasonSpace__content__saveButton"
           >
             Save
-          </div>
-          <span
+          </button>
+          <button
             class="anomalie__wrapper__hotel__detail__reasonSpace__content__editIcon"
             *ngIf="!edit"
             (click)="editReason()"
-            ><img src="./assets/dark/edit.svg" alt=""
-          /></span>
+          >
+            <img src="./assets/dark/edit.svg" alt="" />
+          </button>
         </div>
       </div>
     </div>
@@ -75,8 +76,18 @@
     class="anomalie__wrapper__anomalies"
     [ngClass]="{ shrinked__cards: !isClassActive }"
   >
+    <span
+      class="extra-anomalies"
+      *ngIf="this.allAnomalies.length > 6 && isClassActive"
+    >
+      + {{ this.allAnomalies.length - 6 }}
+    </span>
     <ng-container *ngFor="let item of this.allAnomalies; let i = index">
-      <div class="anomalie__wrapper__anomalies__item" [style.z-index]="20 - i">
+      <div
+        *ngIf="i < 6"
+        class="anomalie__wrapper__anomalies__item"
+        [style.z-index]="20 - i"
+      >
         <app-pulse
           [style.z-index]="20 - i"
           *ngIf="item.isActive"
@@ -94,23 +105,29 @@
   </div>
 
   <div class="anomalie__wrapper__time">
-    <div class="anomalie__wrapper__time__min h3-light font-danger">
-      {{ this.activeCounter }}
+    <div
+      class="anomalie__wrapper__time__min h3-light"
+      [ngClass]="potentialDetectionTimeExcceed ? 'font-danger' : ''"
+    >
+      {{ activeCounter }}
     </div>
     <div class="anomalie__wrapper__time__hhmm h1-light font-black-30">
       {{ potentialAnomalyDetectionTime.time24 }}
     </div>
+    <div *ngIf="index == resolvedIndex" class="anomalie__wrapper__time__timer">
+      <app-timer [counter]="timerCounter"></app-timer>
+    </div>
     <div class="anomalie__wrapper__time__roomStatus">
-      <img src="./assets/color/Occupied-Icon.svg" alt="" />
+      <img [src]="roomStatus" alt="" />
     </div>
   </div>
   <div class="anomalie__wrapper__action">
-    <a class="anomalie__wrapper__action__click" (click)="clickAnomaly()">
+    <button class="anomalie__wrapper__action__click" (click)="clickAnomaly()">
       <img
         [style.transform]="!isClassActive ? 'rotate(0deg)' : 'rotate(180deg)'"
         src="./assets/dark/right-arrow.svg"
         alt=""
       />
-    </a>
+    </button>
   </div>
 </div>
