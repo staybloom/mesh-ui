@@ -1,5 +1,5 @@
-import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import * as moment from 'moment';
+import { Component, ElementRef, NgZone, ViewChild } from "@angular/core";
+import * as moment from "moment";
 import {
   Observable,
   Subscription,
@@ -8,26 +8,26 @@ import {
   map,
   merge,
   of,
-} from 'rxjs';
+} from "rxjs";
 import {
   AnomalyDataResponse,
   AnomlayAction,
   HotelDetailUiPb,
   RoomConnectedResponse,
-} from 'src/app/_interfaces/anomaly';
-import { AnomaliesService } from 'src/app/_services/anomalies.service';
-import { SocketService } from 'src/app/_services/socket.service';
+} from "src/app/_interfaces/anomaly";
+import { AnomaliesService } from "src/app/_services/anomalies.service";
+import { SocketService } from "src/app/_services/socket.service";
 
 @Component({
-  selector: 'app-dashboard-landing',
-  templateUrl: './dashboard-landing.component.html',
-  styleUrls: ['./dashboard-landing.component.scss'],
+  selector: "app-dashboard-landing",
+  templateUrl: "./dashboard-landing.component.html",
+  styleUrls: ["./dashboard-landing.component.scss"],
 })
 export class DashboardLandingComponent {
   isOnline: boolean;
 
   private eventInterval$: Observable<number>;
-  @ViewChild('audioOption') audioOption: ElementRef;
+  @ViewChild("audioOption") audioOption: ElementRef;
   networkStatus$: Subscription = Subscription.EMPTY;
 
   voiceCues: string;
@@ -53,8 +53,8 @@ export class DashboardLandingComponent {
     this.isOnline = navigator.onLine;
 
     // Listen for online/offline events
-    window.addEventListener('online', this.updateOnlineStatus.bind(this));
-    window.addEventListener('offline', this.updateOnlineStatus.bind(this));
+    window.addEventListener("online", this.updateOnlineStatus.bind(this));
+    window.addEventListener("offline", this.updateOnlineStatus.bind(this));
     this.initialLoad = true;
     this.checkNetworkStatus();
     this.eventInterval$ = interval(1000);
@@ -65,7 +65,7 @@ export class DashboardLandingComponent {
     this.ngZone.runOutsideAngular(() => {
       this.ngZone.run(() => {
         setInterval(() => {
-          let PING_PONG: any = { action: 'PING_PONG' };
+          let PING_PONG: any = { action: "PING_PONG" };
           this.socket.socket$.next(PING_PONG);
         }, 120000);
       });
@@ -85,17 +85,17 @@ export class DashboardLandingComponent {
           if (message.action) {
             switch (message.action) {
               case AnomlayAction.ANOMALY_TRIGGER:
-                this.voiceCues = '/assets/audio/anomaly-detected.mp3';
+                this.voiceCues = "/assets/audio/anomaly-detected.mp3";
                 break;
               case AnomlayAction.ANOMALY_RESOLVED:
-                this.voiceCues = './assets/audio/anomaly-resolved.mp3';
+                this.voiceCues = "./assets/audio/anomaly-resolved.mp3";
 
                 break;
               case AnomlayAction.ROOM_CONNECTED:
-                this.voiceCues = './assets/audio/device-connected.mp3';
+                this.voiceCues = "./assets/audio/device-connected.mp3";
                 break;
               case AnomlayAction.ROOM_DISCONNECTED:
-                this.voiceCues = './assets/audio/device-disconnected.mp3';
+                this.voiceCues = "./assets/audio/device-disconnected.mp3";
                 break;
               default:
                 break;
@@ -114,20 +114,20 @@ export class DashboardLandingComponent {
           }
         }
       },
-      error: (err) => console.error('An error occurred :', err),
+      error: (err) => console.error("An error occurred :", err),
       complete: () => {},
     });
   }
   playAudio(url: string) {
     setTimeout(() => {
-      document.getElementsByTagName('audio')[0]?.remove();
-      var audio = document.createElement('audio') as any;
-      let source = document.createElement('source') as any;
-      source.setAttribute('src', url);
-      source.setAttribute('type', 'audio/mp3');
+      document.getElementsByTagName("audio")[0]?.remove();
+      var audio = document.createElement("audio") as any;
+      let source = document.createElement("source") as any;
+      source.setAttribute("src", url);
+      source.setAttribute("type", "audio/mp3");
       audio.appendChild(source);
       document.body.appendChild(audio);
-      audio.setAttribute('autoPlay', true);
+      audio.setAttribute("autoPlay", true);
     }, 1500);
   }
 
@@ -198,8 +198,10 @@ export class DashboardLandingComponent {
     }
   }
   getAnomaliesCards() {
-    let start = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
-    let end = moment();
+    let start = moment()
+      .local()
+      .set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+    let end = moment().local();
     var payload: any = { isActive: true, start: start, end: end };
     this.anomalies.getAnomalies(payload).subscribe((data) => {
       this.anomaliesDataResponse = data;
@@ -230,8 +232,8 @@ export class DashboardLandingComponent {
   }
 
   getDisconetedDevices() {
-    let start = moment().subtract(10, 'days');
-    let end = moment();
+    let start = moment().local().subtract(10, "days");
+    let end = moment().local();
     let payload = {
       start,
       end,
@@ -243,7 +245,7 @@ export class DashboardLandingComponent {
     });
   }
   getDisconnectedTime(data: any) {
-    return moment(data).format('hh:mm');
+    return moment(data).format("hh:mm");
   }
   getDisconnectedTimeDiff(data: string, data1: any) {
     return this.counter(moment().diff(moment(new Date(data))));
@@ -330,12 +332,12 @@ export class DashboardLandingComponent {
   checkNetworkStatus() {
     this.networkStatus$ = merge(
       of(null),
-      fromEvent(window, 'online'),
-      fromEvent(window, 'offline')
+      fromEvent(window, "online"),
+      fromEvent(window, "offline")
     )
       .pipe(map(() => navigator.onLine))
       .subscribe((status) => {
-        console.log('status', status);
+        console.log("status", status);
       });
   }
   updateOnlineStatus() {
