@@ -1,7 +1,16 @@
-import { Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  NgZone,
+  SimpleChanges,
+} from '@angular/core';
 import * as moment from 'moment';
+import { Observable, Subject, interval, map, timer } from 'rxjs';
 import {
   AnomalyDataResponse,
+  AnomalyTrigger,
+  AnomlayAction,
   HotelDetailUiPb,
 } from 'src/app/_interfaces/anomaly';
 import { AnomaliesService } from 'src/app/_services/anomalies.service';
@@ -21,11 +30,25 @@ export class AnomalyCardComponent {
   activeCounter: any;
   edit: boolean = false;
   reason: string = '';
-  constructor(private anomaly: AnomaliesService) {}
-  ngOnInit() {}
-  ngOnChanges() {
-    this.counter(this.anomalyData, true);
+  potentialDetectionTimeExcceed: boolean = false;
+  today = new Date();
+  @Input() counterSeconds: Observable<number>;
+  @Input() resolvedIndex: number;
+  @Input() index: number;
+
+  timerCounter: number;
+  constructor(private anomaly: AnomaliesService, private ngZone: NgZone) {}
+
+  ngOnInit() {
+    if (this.counterSeconds) {
+      this.counterSeconds.subscribe((data) => {
+        // console.log(data);
+        this.timerCounter = data;
+        this.counter(this.anomalyData, true);
+      });
+    }
   }
+
   clickAnomaly() {
     this.isClassActive = !this.isClassActive;
     if (this.isClassActive) {
@@ -38,7 +61,6 @@ export class AnomalyCardComponent {
   get potentialAnomalyDetectionTime() {
     let potentialAnomalyDetectionTime: any =
       this.anomalyData?.potentialAnomalyDetectionTime;
-    // console.log(potentialAnomalyDetectionTime);
     return {
       date: moment(new Date(potentialAnomalyDetectionTime)).date(),
       month: moment(new Date(potentialAnomalyDetectionTime)).format('MMM'),
@@ -49,7 +71,6 @@ export class AnomalyCardComponent {
   getAnomaliesTime(item: AnomalyDataResponse) {
     let potentialAnomalyDetectionTime: any =
       item?.potentialAnomalyDetectionTime;
-    // console.log(potentialAnomalyDetectionTime);
     return {
       diff: moment(
         moment(new Date()).diff(new Date(potentialAnomalyDetectionTime))
@@ -64,93 +85,36 @@ export class AnomalyCardComponent {
     let potentialAnomalyDetectionTimeDiff = moment().diff(
       moment(anomalyCalculate)
     );
-    // let potentialAnomalyDetectionTimeDiff = moment(new Date()).diff(
-    //   moment(new Date('2023-11-22T13:04:10.676Z'))
-    // );
-    console.log(potentialAnomalyDetectionTimeDiff);
+    if (main && item?.isActive) {
+      this.potentialDetectionTimeExcceed =
+        potentialAnomalyDetectionTimeDiff > 890000 ? true : false;
+    }
     const duration = moment.duration(potentialAnomalyDetectionTimeDiff);
-    console.log(duration);
-    if (potentialAnomalyDetectionTimeDiff <= 59000) {
+    if (potentialAnomalyDetectionTimeDiff <= 60000) {
       const secondsElapsed = duration.asSeconds();
       dateTimeInterval =
         Math.floor(secondsElapsed) > 1
           ? `${Math.floor(secondsElapsed)} secs`
           : `${Math.floor(secondsElapsed)} sec`;
-      if (item.isActive) {
-        let seconds = setInterval(() => {
-          console.log('seconds');
-          duration.add(1, 'seconds');
-          const secondsElapsed = duration.asSeconds();
-          dateTimeInterval =
-            Math.floor(secondsElapsed) > 1
-              ? `${Math.floor(secondsElapsed)} secs`
-              : `${Math.floor(secondsElapsed)} sec`;
-          if (main) {
-            this.activeCounter = dateTimeInterval;
-          }
-          console.log(secondsElapsed);
-          if (secondsElapsed > 59) {
-            this.counter(item, main);
-            console.log('clear interval');
-            clearInterval(seconds);
-          }
-        }, 1000);
-      }
     } else if (
-      potentialAnomalyDetectionTimeDiff > 59000 &&
-      potentialAnomalyDetectionTimeDiff <= 3590000
+      potentialAnomalyDetectionTimeDiff > 60000 &&
+      potentialAnomalyDetectionTimeDiff <= 3600000
     ) {
-      duration.add(1, 'minutes');
       const minutesElapsed = duration.minutes();
       dateTimeInterval =
         Math.floor(minutesElapsed) > 1
           ? `${Math.floor(minutesElapsed)} mins`
           : `${Math.floor(minutesElapsed)} min`;
-      if (item.isActive) {
-        setInterval(() => {
-          console.log('minutes');
-          duration.add(1, 'minutes');
-          const minutesElapsed = duration.minutes();
-          dateTimeInterval =
-            Math.floor(minutesElapsed) > 1
-              ? `${Math.floor(minutesElapsed)} mins`
-              : `${Math.floor(minutesElapsed)} min`;
-          if (main) {
-            this.activeCounter = dateTimeInterval;
-          }
-          if (minutesElapsed > 59) {
-            console.log('clear interval');
-            clearInterval(minutesElapsed);
-            this.counter(item, main);
-          }
-        }, 60000);
-      }
-    } else if (potentialAnomalyDetectionTimeDiff > 3590000) {
-      duration.add(1, 'hours');
+    } else if (potentialAnomalyDetectionTimeDiff > 3600000) {
       const hoursElapsed = duration.hours();
       dateTimeInterval =
         Math.floor(hoursElapsed) > 1
           ? `${Math.floor(hoursElapsed)} hrs`
           : `${Math.floor(hoursElapsed)} hr`;
-      if (item.isActive) {
-        setInterval(() => {
-          console.log('hours');
-          duration.add(1, 'hours');
-          const hoursElapsed = duration.hours();
-          dateTimeInterval =
-            Math.floor(hoursElapsed) > 1
-              ? `${Math.floor(hoursElapsed)} hrs`
-              : `${Math.floor(hoursElapsed)} hr`;
-          if (main) {
-            this.activeCounter = dateTimeInterval;
-          }
-        }, 3600000);
-      }
     }
     if (main) {
       this.activeCounter = dateTimeInterval;
     }
-    console.log(this.activeCounter);
     return dateTimeInterval;
   }
 
@@ -169,20 +133,17 @@ export class AnomalyCardComponent {
       roomCode: this.anomalyData.roomCode,
     };
     this.anomaly.getResolvedAnomaly(payload).subscribe((data) => {
-      console.log(data);
       this.allAnomalies = data;
       this.allAnomalies.map((ele) => {
         ele.counter = this.counter(ele);
       });
       this.allAnomalies = this.allAnomalies.reverse();
-      console.log(this.allAnomalies);
     });
   }
   saveReason() {
     this.updateActiveAnomay();
   }
   getReason($event: any) {
-    console.log($event);
     this.reason = $event;
   }
 
@@ -192,12 +153,23 @@ export class AnomalyCardComponent {
       reason: this.reason,
     };
     this.anomaly.updateAnomaly(payload).subscribe((data) => {
-      console.log(data);
       this.edit = false;
     });
   }
 
   get hotelDetails(): HotelDetailUiPb {
     return this.anomalyData?.hotelDetails || {};
+  }
+
+  get roomStatus(): string {
+    switch (this.anomalyData.anomalyTrigger) {
+      case AnomalyTrigger.VACANT:
+        return './assets/color/room-vacant.svg';
+        break;
+      case AnomalyTrigger.TASK_PROLONGED:
+      default:
+        return './assets/color/task-prolonged.svg';
+        break;
+    }
   }
 }

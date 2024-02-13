@@ -6,6 +6,7 @@ import { AnomalyCardComponent } from './components/anomaly-card/anomaly-card.com
 import { PulseComponent } from 'src/app/_components/pulse/pulse.component';
 import { CommonModule } from '@angular/common';
 import { SelectComponent } from 'src/app/_components/select/select.component';
+import { TimerComponent } from 'src/app/_components/timer/timer.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SelectComponent } from 'src/app/_components/select/select.component';
     DashboardLandingComponent,
     AnomalyCardComponent,
     PulseComponent,
+    TimerComponent,
   ],
   providers: [],
 })

@@ -25,7 +25,7 @@ export class SelectComponent {
   @Output() reason = new EventEmitter<string>();
   ngOnInit() {}
   changeSelect($event: any) {
-    console.log($event);
+    //console.log($event);
     this.reason.emit($event.value);
   }
 }

@@ -3,132 +3,121 @@
     <p class="h1-bold font-black-10 anomalies__unresolved__title">
       Current Anomalies
     </p>
-    <div class="anomalies__unresolved__cards" *ngIf="list?.length">
+    <div
+      class="anomalies__unresolved__cards"
+      *ngIf="anomaliesDataResponse && anomaliesDataResponse.length"
+    >
       <ng-container *ngFor="let item of anomaliesDataResponse; let i = index">
-        <app-anomaly-card [anomalyData]="item"> </app-anomaly-card>
+        <app-anomaly-card
+          [anomalyData]="item"
+          [counterSeconds]="getEventInterval()"
+          [resolvedIndex]="resolvedIndex"
+          [index]="i"
+        >
+        </app-anomaly-card>
       </ng-container>
     </div>
   </div>
-  <div class="anomalies__resolved">
-    <p class="h1-bold font-black-10 anomalies__resolved__title">Disconnected</p>
-    <div class="anomalies__resolved__content">
-      <div class="anomalies__resolved__content__hotel">
-        <div class="anomalies__resolved__content__hotel__col-one">
-          <div class="anomalies__resolved__content__hotel__col-one__bloom">
+  <div class="anomalies__resolved" *ngIf="disconnectedDevicesPerInventory">
+    <p class="h1-bold font-black-10 anomalies__resolved__title">Room Offline</p>
+    <ng-container
+      *ngFor="
+        let item of disconnectedDevicesPerInventory | keyvalue;
+        let i = index
+      "
+    >
+      <div class="anomalies__resolved__content">
+        <div class="anomalies__resolved__content__hotel">
+          <div class="anomalies__resolved__content__hotel__col-one">
+            <div class="anomalies__resolved__content__hotel__col-one__bloom">
+              <div
+                class="anomalies__resolved__content__hotel__col-one__bloom__hotelBrand h3-bold font-gold"
+              >
+                {{ inventory[getString(item.key)]?.propertyRef?.brandName }}
+              </div>
+              <div
+                class="anomalies__resolved__content__hotel__col-one__bloom__cityName h3-regular font-black-10"
+              >
+                {{ inventory[getString(item.key)]?.propertyRef?.name }}
+              </div>
+            </div>
+          </div>
+          <div class="anomalies__resolved__content__hotel__col-two">
             <div
-              class="anomalies__resolved__content__hotel__col-one__bloom__hotelBrand h3-bold font-gold"
+              class="anomalies__resolved__content__hotel__col-two__roomCount h1-bold font-danger"
             >
-              Bloomrooms
+              {{ getDisconnectedDevicesArray(item?.value).length }}
             </div>
             <div
-              class="anomalies__resolved__content__hotel__col-one__bloom__cityName h3-regular font-black-10"
+              class="anomalies__resolved__content__hotel__col-two__roomTitle h3-light font-black-30"
             >
-              Connaught Place Area
+              Rooms
             </div>
           </div>
         </div>
-        <div class="anomalies__resolved__content__hotel__col-two">
-          <div
-            class="anomalies__resolved__content__hotel__col-two__roomCount h1-bold font-danger"
+        <ng-container *ngIf="item.value">
+          <ng-container
+            *ngFor="let data of getDisconnectedDevicesArray(item?.value)"
           >
-            3
-          </div>
-          <div
-            class="anomalies__resolved__content__hotel__col-two__roomTitle h3-light font-black-30"
-          >
-            Rooms
-          </div>
-        </div>
+            <ng-container>
+              <div class="anomalies__resolved__content__divider"></div>
+              <div class="anomalies__resolved__content__room">
+                <div class="anomalies__resolved__content__room__col-one">
+                  <div
+                    class="anomalies__resolved__content__room__col-one__device"
+                  >
+                    <div
+                      class="anomalies__resolved__content__room__col-one__device__deviceId h3-light font-gold"
+                    >
+                      {{ data.placeCode }}
+                    </div>
+                    <div
+                      class="anomalies__resolved__content__room__col-one__device__rooms font-black-10"
+                    >
+                      <ng-container
+                        *ngFor="
+                          let pins of data.pinAndAppliances;
+                          let i = index
+                        "
+                      >
+                        {{ pins.device.replace("_", " ").toLowerCase() }}
+                        {{
+                          i ===
+                          getPlaceAndPins(data.pinAndAppliances)?.length - 1
+                            ? ""
+                            : ", "
+                        }}
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="text-align: right"
+                  class="anomalies__resolved__content__room__col-two"
+                >
+                  <div
+                    class="anomalies__resolved__content__room__col-two__roomMin h3-bold font-gold"
+                  >
+                    {{
+                      getDisconnectedTimeDiff(
+                        data.deviceDisconnectionTime,
+                        getEventInterval() | async
+                      )
+                    }}
+                  </div>
+                  <div
+                    class="anomalies__resolved__content__room__col-two__hhmm h3-regular font-black-10"
+                  >
+                    {{ getDisconnectedTime(data.deviceDisconnectionTime) }}
+                  </div>
+                </div>
+              </div></ng-container
+            >
+          </ng-container>
+        </ng-container>
       </div>
-      <div class="anomalies__resolved__content__divider"></div>
-      <div class="anomalies__resolved__content__room">
-        <div class="anomalies__resolved__content__room__col-one">
-          <div class="anomalies__resolved__content__room__col-one__device">
-            <div
-              class="anomalies__resolved__content__room__col-one__device__deviceId h3-light font-gold"
-            >
-              Device_ID_3343111
-            </div>
-            <div
-              class="anomalies__resolved__content__room__col-one__device__rooms h3-regular font-black-10"
-            >
-              SK 003, SK 004, SK 005
-            </div>
-          </div>
-        </div>
-        <div class="anomalies__resolved__content__room__col-two">
-          <div
-            class="anomalies__resolved__content__room__col-two__roomMin h3-bold font-gold"
-          >
-            23 min
-          </div>
-          <div
-            class="anomalies__resolved__content__room__col-two__hhmm h3-regular font-black-10"
-          >
-            12:23
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="anomalies__resolved__content">
-      <div class="anomalies__resolved__content__hotel">
-        <div class="anomalies__resolved__content__hotel__col-one">
-          <div class="anomalies__resolved__content__hotel__col-one__bloom">
-            <div
-              class="anomalies__resolved__content__hotel__col-one__bloom__hotelBrand h3-bold font-gold"
-            >
-              Bloomrooms
-            </div>
-            <div
-              class="anomalies__resolved__content__hotel__col-one__bloom__cityName h3-regular font-black-10"
-            >
-              Connaught Place Area
-            </div>
-          </div>
-        </div>
-        <div class="anomalies__resolved__content__hotel__col-two">
-          <div
-            class="anomalies__resolved__content__hotel__col-two__roomCount h1-bold font-danger"
-          >
-            3
-          </div>
-          <div
-            class="anomalies__resolved__content__hotel__col-two__roomTitle h3-light font-black-30"
-          >
-            Rooms
-          </div>
-        </div>
-      </div>
-      <div class="anomalies__resolved__content__divider"></div>
-      <div class="anomalies__resolved__content__room">
-        <div class="anomalies__resolved__content__room__col-one">
-          <div class="anomalies__resolved__content__room__col-one__device">
-            <div
-              class="anomalies__resolved__content__room__col-one__device__deviceId h3-light font-gold"
-            >
-              Device_ID_3343111
-            </div>
-            <div
-              class="anomalies__resolved__content__room__col-one__device__rooms h3-regular font-black-10"
-            >
-              SK 003, SK 004, SK 005
-            </div>
-          </div>
-        </div>
-        <div class="anomalies__resolved__content__room__col-two">
-          <div
-            class="anomalies__resolved__content__room__col-two__roomMin h3-bold font-gold"
-          >
-            23 min
-          </div>
-          <div
-            class="anomalies__resolved__content__room__col-two__hhmm h3-regular font-black-10"
-          >
-            12:23
-          </div>
-        </div>
-      </div>
-    </div>
+    </ng-container>
   </div>
 </div>
+
+<div id="audio"></div>

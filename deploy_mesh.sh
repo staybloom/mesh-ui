@@ -1,8 +1,8 @@
 #!/bin/bash
-
-npm run build --aot
+$1
+npm run build:$1 --aot
 #For Ubunutu
-sudo zip -r MeshBuildForDeployment.zip Procfile dist/ .ebextensions/ .platform/
+sudo zip -r MeshBuildForDeployment.zip Procfile dist/
 
 
 #For window

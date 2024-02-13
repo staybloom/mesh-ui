@@ -1,3 +1,10 @@
+<div class="no-internet">
+  No Internet Please reload 👉
+  <a href="javascript:void(0)" (click)="reload()">
+    <img src="./assets/light/reload.png" alt="" />
+  </a>
+</div>
+
 <div class="mesh">
   <div class="mesh__wrapper">
     <div class="mesh__wrapper__header">
@@ -12,7 +19,7 @@
       </div>
       <div class="mesh__wrapper__header__navlist">
         <div class="mesh__wrapper__header__navlist__item">
-          <a href="javascript:void(0)">
+          <a class="active" href="javascript:void(0)">
             <span><img src="./assets/dark/dash.svg" alt="" /></span>
             Dashboard
           </a>
@@ -40,7 +47,13 @@
         </div>
       </div>
       <div class="mesh__wrapper__header__bloomTechLogo">
-        <img src="./assets/color/bloomTech-logo.svg" alt="" />
+        <object
+          width="150px"
+          height="48px"
+          data="./assets/animated/header_bloom_tech_logo.svg"
+          type="image/svg+xml"
+        ></object>
+        <!-- <img src="./assets/color/bloomTech-logo.svg" alt="" /> -->
       </div>
     </div>
     <div class="mesh__wrapper__body">
