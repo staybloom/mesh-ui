@@ -199,9 +199,11 @@ export class DashboardLandingComponent {
   }
   getAnomaliesCards() {
     let start = moment()
-      .local()
+      .utc()
+      .add(5, "hours")
+      .add(30, "minutes")
       .set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
-    let end = moment().local();
+    let end = moment().utc().add(5, "hours").add(30, "minutes").format();
     var payload: any = { isActive: true, start: start, end: end };
     this.anomalies.getAnomalies(payload).subscribe((data) => {
       this.anomaliesDataResponse = data;
@@ -232,8 +234,13 @@ export class DashboardLandingComponent {
   }
 
   getDisconetedDevices() {
-    let start = moment().local().subtract(10, "days");
-    let end = moment().local();
+    let start = moment()
+      .utc()
+      .add(5, "hours")
+      .add(30, "minutes")
+      .subtract(10, "days")
+      .format();
+    let end = moment().utc().add(5, "hours").add(30, "minutes").format();
     let payload = {
       start,
       end,
