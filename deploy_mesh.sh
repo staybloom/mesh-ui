@@ -1,6 +1,6 @@
 #!/bin/bash
-
-npm run build:PROD --aot
+$1
+npm run build:$1 --aot
 #For Ubunutu
 sudo zip -r MeshBuildForDeployment.zip Procfile dist/
 
